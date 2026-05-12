@@ -1,3 +1,4 @@
+import { createDirecturlInput } from "./direct-url";
 import {
   getDefaultSearch,
   getSearchEngines,
@@ -50,7 +51,10 @@ export function createSearchSelection() {
     //   ctrl: e.ctrlKey,
     //   meta: e.metaKey,
     // });
-    if ((e.metaKey || e.ctrlKey) && e.key === " ") {
+    if ((e.metaKey || e.ctrlKey) && e.key === "u") {
+      e.preventDefault();
+      createDirecturlInput();
+    } else if ((e.metaKey || e.ctrlKey) && e.key === " ") {
       e.preventDefault();
       input.focus();
     } else if ((e.metaKey || e.ctrlKey) && e.key === "g") {
