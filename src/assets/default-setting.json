@@ -1,0 +1,21 @@
+{
+  "defaultSearchEngine": "no-ai-google",
+  "searchEngines": {
+    "google": { "name":"Google", "url":"https://www.google.com/search?q=%s" },
+    "no-ai-google": { "name":"AI Free Google", "url":"https://www.google.com/search?udm=14&q=%s" },
+    "no-ai-duckduckgo": { "name":"AI Free DuckDuckGo", "url":"https://duckduckgo.com/?q=%s&kz=-1&k1=-1" },
+    "duckduckgo": { "name":"DuckDuckGo", "url":"https://duckduckgo.com/?q=%s" },
+    "bing": { "name":"Bing", "url":"https://www.bing.com/search?q=%s" },
+    "brave": { "name":"Brave", "url":"https://search.brave.com/search?q=%s" },
+    "no-ai-brave": { "name":"AI Free Brave", "url":"https://search.brave.com/search?q=%s&summary=0" },
+    "perplexity": { "name":"Perplexity", "url":"https://www.perplexity.ai/search?q=%s" },
+    "ecosia": { "name":"Ecosia", "url":"https://www.ecosia.org/search?q=%s" },
+    "yandex": { "name":"Yandex", "url":"https://yandex.com/search/?text=%s" },
+    "youtube": { "name":"YouTube", "url":"https://www.youtube.com/results?search_query=%s" }
+  },
+  "bgCss": {
+    "blur": 0,
+    "scale": 1.1,
+    "brightness": 1.0
+  }
+}
