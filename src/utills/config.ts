@@ -29,6 +29,7 @@ function getConfig() {
 function setConfig(config: AppConfig) {
   localStorage.setItem("config", JSON.stringify(config));
 }
+
 export function getSearchEngines(): SearchEngines {
   const config = getConfig();
   return config.searchEngines;

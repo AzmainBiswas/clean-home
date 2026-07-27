@@ -6,7 +6,7 @@ import {
 } from "./utills/config";
 import { createElement } from "./utills/dom";
 
-const searchEngines: SearchEngines = getSearchEngines();
+let searchEngines: SearchEngines = getSearchEngines();
 
 export function createSearchSelection() {
   const form = createElement("form", {

@@ -27,9 +27,115 @@
   }
 }
 
+/*#search-form {
+  position: fixed;
+  top: 15%;
+  right: 50%;
+  transform: translateX(50%);
+  display: flex;
+  justify-content:center;
+}*/
+
+/* Container Form Styling */
+#search-form {
+  position: fixed;
+  top: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px;
+
+  /* Glassmorphism Effect */
+  background: rgb(0 0 0 / 26%);
+  backdrop-filter: blur(12px) saturate(80%);
+  -webkit-backdrop-filter: blur(12px) saturate(80%);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.25);
+
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  max-width: 90vw;
+  width: 60%;
+}
+
+#search-form input[type="submit"] {
+  display: none;
+}
+
+/* Common Styles for Controls */
+#search-engine-select,
+#search-input,
+#search-form input[type="submit"] {
+  height: 42px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 10px;
+  outline: none;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s ease-in-out;
+}
+
+/* Dropdown Select */
+#search-engine-select {
+  background-color: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  padding: 0 12px;
+  cursor: pointer;
+  appearance: none; /* Removes default arrow */
+  -webkit-appearance: none;
+  background-image: url('data:image/svg+xml;utf8,<svg fill="white" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 8px center;
+  padding-right: 30px;
+}
+
+#search-engine-select option {
+  background-color: #1e1e24; /* Dark solid background for readable dropdown list */
+  color: #ffffff;
+}
+
+/* Search Input Text */
+#search-input {
+  flex: 1;
+  background-color: rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+  padding: 0 14px;
+}
+
+#search-input::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+#search-input:focus,
+#search-engine-select:focus {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.5);
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1);
+}
+
+/* Submit Button */
+#search-form input[type="submit"] {
+  background-color: #ffffff;
+  color: #000000;
+  padding: 0 18px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+}
+
+#search-form input[type="submit"]:hover {
+  background-color: rgba(255, 255, 255, 0.85);
+  transform: translateY(-1px);
+}
+
+#search-form input[type="submit"]:active {
+  transform: translateY(0);
+}
+
 /* Optional: styling the placeholder to match the aesthetic */
-
-
 a[href="./settings.html"] {
   position: fixed;
   bottom: 24px;
@@ -40,16 +146,16 @@ a[href="./settings.html"] {
   justify-content: center;
   padding: 5px 10px;
 
-  color: rgba(255, 255, 255, 0.352);
+  color: rgb(192 192 192 / 47%);
   font-size: 12px;
   font-weight: 500;
   letter-spacing: 0.5px;
   text-decoration: none;
   text-transform: uppercase;
 
-  background-color: rgba(21, 21, 21, 0.056);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background-color: rgb(21 21 21 / 44%);
+  backdrop-filter: blur(12px) saturate(180%);
+  -webkit-backdrop-filter: blur(12px) saturate(180%);
 
   border: 1px solid rgbargba(21, 21, 21, 0.056);
   border-radius: 5px;

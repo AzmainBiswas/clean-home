@@ -1,3 +1,4 @@
+import "./settings.css";
 import "./background.ts";
 import { backgroundSelector } from "./background.ts";
 import { createOptions as createSearchEngineOptions } from "./search-section.ts";
@@ -8,16 +9,27 @@ const backgroundSettings = document.getElementById("background-settings");
 backgroundSettings?.append(backgroundSelector());
 
 const searchSettings = document.getElementById("search-settings");
-searchSettings?.appendChild(createSearchSettings())
+searchSettings?.appendChild(createSearchSettings());
 
 function createSearchSettings() {
+  const selectContainer = createElement("div", {
+    className: "container",
+  });
   const select = createElement("select", {
     id: "default-search-selector",
   });
+
   createSearchEngineOptions(select);
   select.addEventListener("change", () => {
     setDefaultSearchEngine(select.value);
-  })
+  });
 
-  return select
+  const selectLabel = createElement("label", {
+    for: "default-search-selector",
+    textContent: "Choose Search Engine"
+  });
+
+  selectContainer.append(selectLabel, select);
+
+  return selectContainer;
 }

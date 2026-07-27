@@ -13,6 +13,7 @@
     "yandex": { "name":"Yandex", "url":"https://yandex.com/search/?text=%s" },
     "youtube": { "name":"YouTube", "url":"https://www.youtube.com/results?search_query=%s" }
   },
+
   "bgCss": {
     "blur": 0,
     "scale": 1.1,
