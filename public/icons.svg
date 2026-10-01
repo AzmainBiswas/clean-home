@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
-  <!-- New Tab: Browser window with plus -->
+  <!-- New Tab: Plus Icon -->
   <symbol id="new-tab-icon" viewBox="0 0 24 24">
-    <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h6m4-2h6v6m-11 5L20 4"/>
+    <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m-8-8h16"/>
   </symbol>
 
   <!-- Browser Tab with Plus -->

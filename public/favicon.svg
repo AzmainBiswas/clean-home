@@ -1,37 +1,13 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" fill="none">
-  <defs>
-    <linearGradient id="bgGrad" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#1a1c2b" />
-      <stop offset="100%" stop-color="#0c0d14" />
-    </linearGradient>
-    <linearGradient id="glowGrad" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#38bdf8" />
-      <stop offset="50%" stop-color="#818cf8" />
-      <stop offset="100%" stop-color="#c084fc" />
-    </linearGradient>
-    <linearGradient id="tabGrad" x1="4" y1="6" x2="28" y2="26" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#232536" />
-      <stop offset="100%" stop-color="#141521" />
-    </linearGradient>
-  </defs>
-
-  <!-- Base squircle container -->
-  <rect x="1.5" y="1.5" width="29" height="29" rx="7.5" fill="url(#bgGrad)" stroke="url(#glowGrad)" stroke-width="1.5" stroke-opacity="0.85" />
-
-  <!-- Browser window frame -->
-  <rect x="5" y="7" width="22" height="18" rx="3.5" fill="url(#tabGrad)" stroke="rgba(255, 255, 255, 0.15)" stroke-width="1" />
-
-  <!-- Window Header Bar Divider -->
-  <path d="M5 12h22" stroke="rgba(255, 255, 255, 0.12)" stroke-width="1" />
-
-  <!-- Window control buttons (dots) -->
-  <circle cx="8" cy="9.5" r="0.9" fill="#f43f5e" />
-  <circle cx="10.5" cy="9.5" r="0.9" fill="#fbbf24" />
-  <circle cx="13" cy="9.5" r="0.9" fill="#34d399" />
-
-  <!-- Active Tab Outline on top bar -->
-  <path d="M16.5 12V9c0-.6.4-1 1-1h4c.6 0 1 .4 1 1v3" fill="none" stroke="url(#glowGrad)" stroke-width="1.1" stroke-linecap="round" />
-
-  <!-- Central "New Tab" Luminous Plus (+) Symbol -->
-  <path d="M16 15v6m-3-3h6" stroke="url(#glowGrad)" stroke-width="2.2" stroke-linecap="round" />
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none">
+  <style>
+    path {
+      stroke: #1f2937;
+    }
+    @media (prefers-color-scheme: dark) {
+      path {
+        stroke: #ffffff;
+      }
+    }
+  </style>
+  <path d="M12 4v16m-8-8h16" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>
