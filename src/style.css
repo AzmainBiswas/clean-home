@@ -207,28 +207,41 @@ a[href="./settings.html"]:hover {
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
 }
 
-/* Bookmarks grid container */
+/* Bookmarks container: Single unified frosted glass box */
 #bookmarks-container {
   position: fixed;
   left: 50%;
   transform: translateX(-50%);
   width: 90%;
-  max-width: 680px;
+  max-width: 600px;
 
   display: grid;
   grid-template-columns: repeat(var(--bookmark-columns, 4), minmax(0, 1fr));
-  gap: 12px;
+  gap: 8px;
+  padding: 12px 14px;
+
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--element-blur)) saturate(140%);
+  -webkit-backdrop-filter: blur(var(--element-blur)) saturate(140%);
+  border: 1px solid var(--glass-border);
+  border-radius: 18px;
+  box-shadow: var(--glass-shadow);
+
   z-index: 10;
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+#bookmarks-container:hover {
+  border-color: rgba(255, 255, 255, 0.18);
+}
+
 /* Dynamic vertical positioning based on search bar placement */
 #bookmarks-container.search-top {
-  top: 24%;
+  top: 22%;
 }
 
 #bookmarks-container.search-middle {
-  top: 53%;
+  top: 52%;
 }
 
 #bookmarks-container.search-bottom {
@@ -236,24 +249,22 @@ a[href="./settings.html"]:hover {
 }
 
 #bookmarks-container.search-hidden {
-  top: 40%;
+  top: 42%;
+  transform: translate(-50%, -50%);
 }
 
-/* Individual bookmark tile */
+/* Individual bookmark item listed inside the single container box */
 .bookmark-tile {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  padding: 14px 10px;
+  gap: 6px;
+  padding: 10px 8px;
 
-  background: var(--glass-bg);
-  backdrop-filter: blur(var(--element-blur)) saturate(140%);
-  -webkit-backdrop-filter: blur(var(--element-blur)) saturate(140%);
-  border: 1px solid var(--glass-border);
-  border-radius: 16px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 12px;
 
   text-decoration: none;
   cursor: pointer;
@@ -262,33 +273,38 @@ a[href="./settings.html"]:hover {
 }
 
 .bookmark-tile:hover {
-  background: rgba(30, 30, 42, 0.65);
-  border-color: rgba(255, 255, 255, 0.28);
-  transform: translateY(-3px);
-  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.38);
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
 }
 
 .bookmark-icon-wrapper {
-  width: 36px;
-  height: 36px;
+  width: 34px;
+  height: 34px;
   border-radius: 10px;
   background: rgba(255, 255, 255, 0.08);
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+.bookmark-tile:hover .bookmark-icon-wrapper {
+  background: rgba(255, 255, 255, 0.14);
+  transform: scale(1.05);
 }
 
 .bookmark-icon {
-  width: 22px;
-  height: 22px;
+  width: 20px;
+  height: 20px;
   object-fit: contain;
   border-radius: 4px;
 }
 
 .bookmark-fallback-icon {
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 600;
   color: #ffffff;
 }
@@ -303,4 +319,9 @@ a[href="./settings.html"]:hover {
   overflow: hidden;
   text-overflow: ellipsis;
   letter-spacing: 0.2px;
+  opacity: 0.9;
+}
+
+.bookmark-tile:hover .bookmark-title {
+  opacity: 1;
 }
