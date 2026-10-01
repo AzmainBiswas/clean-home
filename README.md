@@ -1,15 +1,15 @@
 # Clean Home 🌿
 
-A fast, elegant, and distraction-free New Tab dashboard Chrome extension with custom wallpapers, frosted glass blur controls, and multi-engine spotlight search.
+A fast, elegant, and distraction-free New Tab dashboard Chrome extension with custom wallpapers, quick-access bookmarks, frosted glass blur controls, and multi-engine spotlight search.
 
 ---
 
 ## Features
 
+- **Quick-Access Bookmarks**: Organize your favorite links in a unified frosted-glass container with customizable columns (2 to 6 columns), automatic favicons, and in-settings management (add, remove, and toggle visibility).
 - **Spotlight Search**: Multi-engine search with customizable positioning (Top, Middle, Bottom) and toggle visibility.
-- **Bookmarks Grid**: Customizable quick-access links grid with column settings (2 to 6 columns), automatic favicons, and in-settings management (add/remove/toggle).
 - **Custom Wallpaper**: Upload your own photo with live blur, brightness, and scale adjustments (persisted in IndexedDB).
-- **Synchronized Glassmorphism Blur**: A single slider controls the blur across all UI elements (search bar, settings card, and buttons).
+- **Synchronized Glassmorphism Blur**: A single slider controls the blur across all UI elements (search bar, bookmarks container, settings card, and buttons).
 - **Extensible Architecture**: Modular plugin structure making it effortless to add new widgets (Clock, Weather, etc.).
 
 ---
@@ -55,7 +55,7 @@ A fast, elegant, and distraction-free New Tab dashboard Chrome extension with cu
 <table>
   <tbody>
     <tr>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/AzmainBiswas"><img src="https://github.com/AzmainBiswas.png?size=100" width="100px;" alt="Azmain Biswas"/><br /><sub><b>Azmain Biswas</b></sub></a><br /><a href="#creator" title="Creator">👑</a> <a href="#code" title="Code">💻</a> <a href="#design" title="Design">🎨</a> <a href="#maintenance" title="Maintenance">🚧</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/AzmainBiswas"><img src="https://github.com/AzmainBiswas.png?size=100" width="100px;" alt="Azmain Biswas"/><br /><sub><b>Azmain Biswas</b></sub></a><br /><a href="#creator" title="Creator">👑</a> <a href="#design" title="Design">🎨</a> <a href="#maintenance" title="Maintenance">🚧</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://antigravity.google"><img src="https://antigravity.google/favicon.ico" width="100px;" alt="Google Antigravity"/><br /><sub><b>Google Antigravity</b></sub></a><br /><a href="#pair-programming" title="Pair Programming">🤖</a> <a href="#code" title="Code">💻</a> <a href="#doc" title="Documentation">📖</a> <a href="#infra" title="Infrastructure / CI">🚇</a></td>
     </tr>
   </tbody>
