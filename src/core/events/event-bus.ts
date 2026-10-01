@@ -4,7 +4,6 @@ export type EventPayloads = {
   "config:changed": { key: string; value: unknown };
   "wallpaper:updated": { blobUrl: string };
   "wallpaper:filters-changed": BgCss;
-  "direct-url:open": void;
   "search:focus": void;
   "search:select-engine": string;
 };
