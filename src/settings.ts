@@ -1,35 +1,39 @@
 import "./settings.css";
-import "./background.ts";
-import { backgroundSelector } from "./background.ts";
-import { createOptions as createSearchEngineOptions } from "./search-section.ts";
-import { setDefaultSearchEngine } from "./utills/config.ts";
-import { createElement } from "./utills/dom.ts";
+import { configService } from "./core/config/config.service";
+import { features } from "./features";
 
-const backgroundSettings = document.getElementById("background-settings");
-backgroundSettings?.append(backgroundSelector());
+async function bootstrapSettings(): Promise<void> {
+  // 1. Initialize configuration
+  await configService.init();
 
-const searchSettings = document.getElementById("search-settings");
-searchSettings?.appendChild(createSearchSettings());
+  // 2. Initialize registered features (e.g. Wallpaper sets up background preview)
+  for (const feature of features) {
+    try {
+      await feature.init();
+    } catch (err) {
+      console.error(`Failed to initialize feature "${feature.meta.id}":`, err);
+    }
+  }
 
-function createSearchSettings() {
-  const selectContainer = createElement("div", {
-    className: "container",
-  });
-  const select = createElement("select", {
-    id: "default-search-selector",
-  });
+  // 3. Mount settings panels for each feature
+  const settingsContainer = document.getElementById("settings");
+  const backgroundSlot = document.getElementById("background-settings");
+  const searchSlot = document.getElementById("search-settings");
 
-  createSearchEngineOptions(select);
-  select.addEventListener("change", () => {
-    setDefaultSearchEngine(select.value);
-  });
+  for (const feature of features) {
+    const panel = feature.renderSettings?.();
+    if (!panel) continue;
 
-  const selectLabel = createElement("label", {
-    for: "default-search-selector",
-    textContent: "Choose Search Engine"
-  });
-
-  selectContainer.append(selectLabel, select);
-
-  return selectContainer;
+    if (feature.meta.id === "wallpaper" && backgroundSlot) {
+      backgroundSlot.appendChild(panel);
+    } else if (feature.meta.id === "search" && searchSlot) {
+      searchSlot.appendChild(panel);
+    } else if (settingsContainer) {
+      settingsContainer.appendChild(panel);
+    }
+  }
 }
+
+bootstrapSettings().catch((err) => {
+  console.error("Failed to bootstrap settings page:", err);
+});

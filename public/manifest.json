@@ -1,9 +1,10 @@
 {
   "manifest_version": 3,
-  "name": "Cleane Home",
+  "name": "Clean Home",
   "version": "1.0.0",
   "description": "Replaces the default new tab page with a custom dashboard.",
+  "permissions": ["storage"],
   "chrome_url_overrides": {
-      "newtab": "index.html"
-    }
+    "newtab": "index.html"
+  }
 }
