@@ -1,17 +1,36 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family:
-    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-}
-
 :root {
   --bg-blur: 0px;
   --bg-brightness: 1;
   --bg-scale: 1.1;
+  --element-blur: 12px;
+  --glass-bg: rgba(18, 18, 24, 0.55);
+  --glass-card-bg: rgba(255, 255, 255, 0.04);
+  --glass-border: rgba(255, 255, 255, 0.12);
+  --glass-border-focus: rgba(255, 255, 255, 0.35);
+  --glass-shadow: 0 24px 60px rgba(0, 0, 0, 0.45), 0 1px 1px rgba(255, 255, 255, 0.08) inset;
+  --text-primary: #ffffff;
+  --text-secondary: rgba(255, 255, 255, 0.65);
+  --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Inter", sans-serif;
 }
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: var(--font-family);
+}
+
+body {
+  min-height: 100vh;
+  color: var(--text-primary);
+  background-color: #101014;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+}
+
+/* Background wallpaper canvas */
 #bg-container {
   position: fixed;
   top: 0;
@@ -23,173 +42,237 @@
   background-position: center;
   filter: blur(var(--bg-blur)) brightness(var(--bg-brightness));
   transform: scale(var(--bg-scale));
-  transition: filter 0.15s ease-out, transform 0.15s ease-out;
+  transition: filter 0.2s ease-out, transform 0.2s ease-out;
 }
 
+/* Main settings modal card */
 #settings {
-  width: 90%;
-  max-width: 900px;
-  margin: 10rem auto;
-  background-color: #0000002e;
-  padding: 1rem;
-  border-radius: 10px;
-  background: rgb(0 0 0 / 26%);
-  -webkit-backdrop-filter: blur(16px) saturate(80%);
-  backdrop-filter: blur(16px) saturate(80%);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 1px 8px 32px 0 rgba(0, 0, 0, 0.6);
-}
+  width: 100%;
+  max-width: 580px;
+  margin: auto;
+  padding: 24px 28px;
 
-#background-options {
-  padding: 2px;
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--element-blur)) saturate(140%);
+  -webkit-backdrop-filter: blur(var(--element-blur)) saturate(140%);
+
+  border: 1px solid var(--glass-border);
+  border-radius: 24px;
+  box-shadow: var(--glass-shadow);
+
   display: flex;
   flex-direction: column;
+  gap: 16px;
+  animation: fadeIn 0.25s ease-out;
 }
 
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+#background-options,
+#search-options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Setting row containers */
 .container {
   display: flex;
-  flex: row;
+  align-items: center;
   justify-content: space-between;
-  margin: 0.1rem;
-  gap: 1rem;
+  gap: 16px;
+  padding: 12px 16px;
 
-  border-radius: 10px;
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.25);
+  background: var(--glass-card-bg);
+  backdrop-filter: blur(var(--element-blur)) saturate(140%);
+  -webkit-backdrop-filter: blur(var(--element-blur)) saturate(140%);
+
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 14px;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.container:hover {
+  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(255, 255, 255, 0.12);
 }
 
 .container label {
-  background-color: black;
-  color: white;
-  border-radius: 10px;
-  font-weight: 400;
-  font-size: 16px;
-  margin: 10px;
-  padding: 10px 50px;
+  color: var(--text-primary);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: default;
 }
 
+/* File upload button styling */
 input[type="file"] {
   display: none;
-  height: 0;
-  overflow: hidden;
 }
 
-#background-options div:nth-child(1) label:hover {
-  color: black;
-  background-color: white;
+label[for="background-selector"] {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 10px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
 
- input[type="range"] {
-  margin-right: 2rem;
+label[for="background-selector"]:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-1px);
 }
 
-/*********** Baseline, reset styles ***********/
+/* Modern Range Slider Styling */
 input[type="range"] {
   -webkit-appearance: none;
   appearance: none;
   background: transparent;
   cursor: pointer;
-  width: 33rem;
+  width: 180px;
+  height: 24px;
 }
 
-/* Removes default focus */
 input[type="range"]:focus {
   outline: none;
 }
 
-/******** Chrome, Safari, Opera and Edge Chromium styles ********/
-/* slider track */
+/* Webkit track & thumb */
 input[type="range"]::-webkit-slider-runnable-track {
-  background-color: #ffffff;
-  border-radius: 0.8rem;
-  height: 1rem;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 999px;
+  height: 6px;
+  transition: background 0.2s;
 }
 
-/* slider thumb */
+input[type="range"]:hover::-webkit-slider-runnable-track {
+  background: rgba(255, 255, 255, 0.3);
+}
+
 input[type="range"]::-webkit-slider-thumb {
-  -webkit-appearance: none; /* Override default look */
+  -webkit-appearance: none;
   appearance: none;
-  margin-top: -8px; /* Centers thumb on the track */
-  background-color: #000000;
-  border-radius: 0.5rem;
-  height: 2rem;
-  width: 2rem;
-}
-
-input[type="range"]:focus::-webkit-slider-thumb {
-  outline: 3px solid #000000;
-  outline-offset: 0.125rem;
-}
-
-/*********** Firefox styles ***********/
-/* slider track */
-input[type="range"]::-moz-range-track {
+  margin-top: -6px;
   background-color: #ffffff;
-  border-radius: 0.8rem;
-  height: 1rem;
+  border-radius: 50%;
+  height: 18px;
+  width: 18px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.45);
+  transition: transform 0.15s, background-color 0.15s;
 }
 
-/* slider thumb */
+input[type="range"]:hover::-webkit-slider-thumb {
+  transform: scale(1.15);
+}
+
+input[type="range"]:active::-webkit-slider-thumb {
+  transform: scale(1.05);
+  background-color: #f0f0f5;
+}
+
+/* Firefox track & thumb */
+input[type="range"]::-moz-range-track {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 999px;
+  height: 6px;
+}
+
 input[type="range"]::-moz-range-thumb {
-  background-color: #000000;
-  border: none; /*Removes extra border that FF applies*/
-  border-radius: 0.5rem;
-  height: 2rem;
-  width: 2rem;
+  background-color: #ffffff;
+  border: none;
+  border-radius: 50%;
+  height: 18px;
+  width: 18px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.45);
 }
 
-input[type="range"]:focus::-moz-range-thumb{
-  outline: 3px solid #000000;
-  outline-offset: 0.125rem;
-}
-
+/* Search Engine selector dropdown in settings */
 #default-search-selector {
-  margin: 1rem;
-  width: 50%;
-  border: 1px solid var(--select-border);
-  border-radius: 0.7em;
-  border: 0;
-  padding: 0.25em 0.5em;
-  font-size: 1rem;
+  height: 38px;
+  width: 180px;
+  padding: 0 28px 0 12px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-primary);
+  background-color: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 10px;
   cursor: pointer;
-  line-height: 1;
-  background-color: #fff;
-  background-image: linear-gradient(to top, #f9f9f9, #fff 33%);
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url('data:image/svg+xml;utf8,<svg fill="%23ffffff" height="18" viewBox="0 0 24 24" width="18" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 8px center;
+  transition: all 0.2s ease;
 }
 
+#default-search-selector:hover {
+  background-color: rgba(255, 255, 255, 0.14);
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+#default-search-selector:focus {
+  outline: none;
+  border-color: var(--glass-border-focus);
+}
+
+#default-search-selector option {
+  background-color: #181820;
+  color: #ffffff;
+}
+
+/* Floating minimalist back button */
 a[href="./index.html"] {
   position: fixed;
   bottom: 24px;
   right: 24px;
 
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  justify-content: center;
-  padding: 5px 10px;
+  gap: 6px;
+  padding: 8px 18px;
 
-  color: rgb(255 255 255 / 59%);
+  color: var(--text-secondary);
   font-size: 12px;
   font-weight: 500;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.6px;
   text-decoration: none;
   text-transform: uppercase;
 
-  background-color: rgba(21, 21, 21, 0.056);
-  backdrop-filter: blur(12px) saturate(80%);
-  -webkit-backdrop-filter: blur(12px) saturate(80%);
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--element-blur)) saturate(140%);
+  -webkit-backdrop-filter: blur(var(--element-blur)) saturate(140%);
 
-  border: 1px solid rgba(21, 21, 21, 0.056);
-  border-radius: 5px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  border: 1px solid var(--glass-border);
+  border-radius: 999px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
 
-  /* Interactions */
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  z-index: 1000;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 100;
+}
 
-  &:hover {
-    background-color: rgba(0, 0, 0, 0.138);
-    color: #ffffff;
-    transform: translateY(-1px);
-    border-color: rgba(0, 0, 0, 0.075);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-  }
+a[href="./index.html"]:hover {
+  color: #ffffff;
+  background: rgba(35, 35, 45, 0.65);
+  border-color: rgba(255, 255, 255, 0.25);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
 }

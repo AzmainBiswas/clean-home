@@ -20,6 +20,10 @@ export class ConfigService {
         ...stored,
         bgCss: { ...DEFAULT_CONFIG.bgCss, ...(stored.bgCss || {}) },
         searchEngines: { ...DEFAULT_CONFIG.searchEngines, ...(stored.searchEngines || {}) },
+        elementBlur:
+          typeof stored.elementBlur === "number"
+            ? stored.elementBlur
+            : DEFAULT_CONFIG.elementBlur,
       };
     } else {
       this.config = { ...DEFAULT_CONFIG };
@@ -57,6 +61,17 @@ export class ConfigService {
     this.config.defaultSearchEngine = engineId;
     await storage.set(CONFIG_STORAGE_KEY, this.config);
     EventBus.emit("config:changed", { key: "defaultSearchEngine", value: engineId });
+  }
+
+  getElementBlur(): number {
+    return this.config.elementBlur ?? DEFAULT_CONFIG.elementBlur;
+  }
+
+  async setElementBlur(blur: number): Promise<void> {
+    this.config.elementBlur = blur;
+    await storage.set(CONFIG_STORAGE_KEY, this.config);
+    EventBus.emit("element:blur-changed", blur);
+    EventBus.emit("config:changed", { key: "elementBlur", value: blur });
   }
 
   async updateConfig(partial: Partial<AppConfig>): Promise<void> {

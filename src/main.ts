@@ -1,10 +1,16 @@
 import "./style.css";
+import { EventBus } from "./core/events/event-bus";
 import { configService } from "./core/config/config.service";
 import { features } from "./features";
 
 async function bootstrapDashboard(): Promise<void> {
-  // 1. Initialize configuration
+  // 1. Initialize configuration & CSS variables
   await configService.init();
+  const applyElementBlur = (blur: number) => {
+    document.documentElement.style.setProperty("--element-blur", `${blur}px`);
+  };
+  applyElementBlur(configService.getElementBlur());
+  EventBus.on("element:blur-changed", (blur) => applyElementBlur(blur));
 
   // 2. Initialize all registered features
   for (const feature of features) {

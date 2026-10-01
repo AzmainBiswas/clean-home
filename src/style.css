@@ -1,16 +1,32 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-}
-
 :root {
   --bg-blur: 0px;
   --bg-brightness: 1;
   --bg-scale: 1.1;
+  --element-blur: 12px;
+  --glass-bg: rgba(18, 18, 24, 0.45);
+  --glass-border: rgba(255, 255, 255, 0.12);
+  --glass-border-focus: rgba(255, 255, 255, 0.35);
+  --glass-shadow: 0 20px 48px rgba(0, 0, 0, 0.35), 0 1px 1px rgba(255, 255, 255, 0.08) inset;
+  --text-primary: #ffffff;
+  --text-secondary: rgba(255, 255, 255, 0.65);
+  --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Inter", sans-serif;
 }
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: var(--font-family);
+}
+
+body {
+  min-height: 100vh;
+  overflow: hidden;
+  color: var(--text-primary);
+  background-color: #101014;
+}
+
+/* Background wallpaper canvas */
 #bg-container {
   position: fixed;
   top: 0;
@@ -22,143 +38,143 @@
   background-position: center;
   filter: blur(var(--bg-blur)) brightness(var(--bg-brightness));
   transform: scale(var(--bg-scale));
-  transition: filter 0.15s ease-out, transform 0.15s ease-out;
+  transition: filter 0.2s ease-out, transform 0.2s ease-out;
 }
 
-/* Container Form Styling */
+/* Dashboard container */
+#new-tab {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  z-index: 10;
+}
+
+/* Centered elegant spotlight search form */
 #search-form {
   position: fixed;
-  top: 5%;
+  top: 42%;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translate(-50%, -50%);
 
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 8px;
+  padding: 7px 10px;
 
-  /* Glassmorphism Effect */
-  background: rgb(0 0 0 / 26%);
-  backdrop-filter: blur(12px) saturate(80%);
-  -webkit-backdrop-filter: blur(12px) saturate(80%);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 16px;
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.25);
+  width: 90%;
+  max-width: 600px;
 
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  max-width: 90vw;
-  width: 60%;
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--element-blur)) saturate(140%);
+  -webkit-backdrop-filter: blur(var(--element-blur)) saturate(140%);
+  border: 1px solid var(--glass-border);
+  border-radius: 18px;
+  box-shadow: var(--glass-shadow);
+
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+#search-form:hover {
+  border-color: rgba(255, 255, 255, 0.2);
+  background: rgba(22, 22, 30, 0.52);
+}
+
+#search-form:focus-within {
+  background: rgba(25, 25, 34, 0.62);
+  border-color: var(--glass-border-focus);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45), 0 0 0 1px var(--glass-border-focus);
+  transform: translate(-50%, -52%);
 }
 
 #search-form input[type="submit"] {
   display: none;
 }
 
-/* Common Styles for Controls */
-#search-engine-select,
-#search-input,
-#search-form input[type="submit"] {
-  height: 42px;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 10px;
-  outline: none;
-  font-size: 14px;
+/* Search engine selector pill */
+#search-engine-select {
+  height: 38px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  background-color: rgba(255, 255, 255, 0.08);
+  color: var(--text-primary);
+  font-size: 13px;
   font-weight: 500;
-  transition: all 0.2s ease-in-out;
+  padding: 0 28px 0 12px;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url('data:image/svg+xml;utf8,<svg fill="%23ffffff" height="18" viewBox="0 0 24 24" width="18" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 6px center;
+  transition: all 0.2s ease;
 }
 
-/* Dropdown Select */
-#search-engine-select {
-  background-color: rgba(255, 255, 255, 0.15);
-  color: #ffffff;
-  padding: 0 12px;
-  cursor: pointer;
-  appearance: none; /* Removes default arrow */
-  -webkit-appearance: none;
-  background-image: url('data:image/svg+xml;utf8,<svg fill="white" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
-  background-repeat: no-repeat;
-  background-position: right 8px center;
-  padding-right: 30px;
+#search-engine-select:hover {
+  background-color: rgba(255, 255, 255, 0.14);
+  border-color: rgba(255, 255, 255, 0.22);
+}
+
+#search-engine-select:focus {
+  outline: none;
+  border-color: var(--glass-border-focus);
 }
 
 #search-engine-select option {
-  background-color: #1e1e24; /* Dark solid background for readable dropdown list */
+  background-color: #181820;
   color: #ffffff;
 }
 
-/* Search Input Text */
+/* Search input */
 #search-input {
   flex: 1;
-  background-color: rgba(255, 255, 255, 0.08);
-  color: #ffffff;
-  padding: 0 14px;
+  height: 38px;
+  border: none;
+  background: transparent;
+  color: var(--text-primary);
+  font-size: 15px;
+  padding: 0 8px;
+  outline: none;
 }
 
 #search-input::placeholder {
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(255, 255, 255, 0.45);
+  font-weight: 400;
 }
 
-#search-input:focus,
-#search-engine-select:focus {
-  background-color: rgba(255, 255, 255, 0.2);
-  border-color: rgba(255, 255, 255, 0.5);
-  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1);
-}
-
-/* Submit Button */
-#search-form input[type="submit"] {
-  background-color: #ffffff;
-  color: #000000;
-  padding: 0 18px;
-  font-weight: 600;
-  cursor: pointer;
-  border: none;
-}
-
-#search-form input[type="submit"]:hover {
-  background-color: rgba(255, 255, 255, 0.85);
-  transform: translateY(-1px);
-}
-
-#search-form input[type="submit"]:active {
-  transform: translateY(0);
-}
-
-/* Optional: styling the placeholder to match the aesthetic */
+/* Floating minimalist settings button */
 a[href="./settings.html"] {
   position: fixed;
   bottom: 24px;
   right: 24px;
 
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  justify-content: center;
-  padding: 5px 10px;
+  gap: 6px;
+  padding: 8px 18px;
 
-  color: rgb(192 192 192 / 47%);
+  color: var(--text-secondary);
   font-size: 12px;
   font-weight: 500;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.6px;
   text-decoration: none;
   text-transform: uppercase;
 
-  background-color: rgb(21 21 21 / 44%);
-  backdrop-filter: blur(12px) saturate(180%);
-  -webkit-backdrop-filter: blur(12px) saturate(180%);
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--element-blur)) saturate(140%);
+  -webkit-backdrop-filter: blur(var(--element-blur)) saturate(140%);
 
-  border: 1px solid rgba(21, 21, 21, 0.056);
-  border-radius: 5px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  border: 1px solid var(--glass-border);
+  border-radius: 999px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
 
-  /* Interactions */
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  z-index: 1000;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 100;
+}
 
-  &:hover {
-    background-color: rgba(0, 0, 0, 0.138);
-    color: #ffffff;
-    transform: translateY(-1px);
-    border-color: rgba(0, 0, 0, 0.075);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-  }
+a[href="./settings.html"]:hover {
+  color: #ffffff;
+  background: rgba(35, 35, 45, 0.65);
+  border-color: rgba(255, 255, 255, 0.25);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
 }

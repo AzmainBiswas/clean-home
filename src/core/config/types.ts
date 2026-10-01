@@ -15,4 +15,5 @@ export interface AppConfig {
   defaultSearchEngine: string;
   searchEngines: SearchEngines;
   bgCss: BgCss;
+  elementBlur: number;
 }

@@ -6,6 +6,7 @@ export type EventPayloads = {
   "wallpaper:filters-changed": BgCss;
   "search:focus": void;
   "search:select-engine": string;
+  "element:blur-changed": number;
 };
 
 type EventHandler<T> = (payload: T) => void;

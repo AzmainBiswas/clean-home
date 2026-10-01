@@ -1,10 +1,16 @@
 import "./settings.css";
+import { EventBus } from "./core/events/event-bus";
 import { configService } from "./core/config/config.service";
 import { features } from "./features";
 
 async function bootstrapSettings(): Promise<void> {
-  // 1. Initialize configuration
+  // 1. Initialize configuration & CSS variables
   await configService.init();
+  const applyElementBlur = (blur: number) => {
+    document.documentElement.style.setProperty("--element-blur", `${blur}px`);
+  };
+  applyElementBlur(configService.getElementBlur());
+  EventBus.on("element:blur-changed", (blur) => applyElementBlur(blur));
 
   // 2. Initialize registered features (e.g. Wallpaper sets up background preview)
   for (const feature of features) {
