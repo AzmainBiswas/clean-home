@@ -7,6 +7,7 @@ export type EventPayloads = {
   "search:focus": void;
   "search:select-engine": string;
   "search:position-changed": SearchPosition;
+  "search:visibility-changed": boolean;
   "element:blur-changed": number;
 };
 

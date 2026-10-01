@@ -19,4 +19,5 @@ export interface AppConfig {
   bgCss: BgCss;
   elementBlur: number;
   searchPosition: SearchPosition;
+  showSearchBar: boolean;
 }

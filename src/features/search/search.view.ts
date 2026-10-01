@@ -12,6 +12,7 @@ export class SearchView {
   render(): HTMLElement {
     this.form = createElement("form", { id: "search-form" });
     this.applyPosition(configService.getSearchPosition());
+    this.applyVisibility(configService.getShowSearchBar());
 
     this.select = createElement("select", {
       name: "search-engines",
@@ -46,10 +47,13 @@ export class SearchView {
 
     // Listen to EventBus commands
     EventBus.on("search:focus", () => {
-      this.input?.focus();
+      if (configService.getShowSearchBar()) {
+        this.input?.focus();
+      }
     });
 
     EventBus.on("search:select-engine", (engineKey) => {
+      if (!configService.getShowSearchBar()) return;
       if (this.select) {
         this.select.value = engineKey;
       }
@@ -60,7 +64,16 @@ export class SearchView {
       this.applyPosition(newPos);
     });
 
+    EventBus.on("search:visibility-changed", (visible) => {
+      this.applyVisibility(visible);
+    });
+
     return this.form;
+  }
+
+  private applyVisibility(visible: boolean): void {
+    if (!this.form) return;
+    this.form.style.display = visible ? "flex" : "none";
   }
 
   private applyPosition(pos: SearchPosition): void {

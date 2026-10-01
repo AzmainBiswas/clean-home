@@ -6,7 +6,29 @@ import { searchService } from "./search.service";
 export function createSearchSettings(): HTMLElement {
   const wrapper = createElement("div", { id: "search-options" });
 
-  // 1. Search Engine Selector
+  // 1. Search Bar Toggle (Show / Hide)
+  const toggleContainer = createElement("div", { className: "container" });
+  const toggleLabel = createElement("label", {
+    htmlFor: "search-visibility-toggle",
+    textContent: "Show Search Bar",
+  });
+
+  const switchWrapper = createElement("label", { className: "switch" });
+  const toggleInput = createElement("input", {
+    id: "search-visibility-toggle",
+    type: "checkbox",
+  });
+  toggleInput.checked = configService.getShowSearchBar();
+
+  const switchSlider = createElement("span", { className: "switch-slider" });
+  switchWrapper.append(toggleInput, switchSlider);
+
+  toggleInput.addEventListener("change", () => {
+    configService.setShowSearchBar(toggleInput.checked);
+  });
+  toggleContainer.append(toggleLabel, switchWrapper);
+
+  // 2. Search Engine Selector
   const engineContainer = createElement("div", { className: "container" });
   const engineLabel = createElement("label", {
     htmlFor: "default-search-selector",
@@ -96,6 +118,6 @@ export function createSearchSettings(): HTMLElement {
   });
   positionContainer.append(positionLabel, positionSelect);
 
-  wrapper.append(engineContainer, blurContainer, positionContainer);
+  wrapper.append(toggleContainer, positionContainer, engineContainer, blurContainer);
   return wrapper;
 }

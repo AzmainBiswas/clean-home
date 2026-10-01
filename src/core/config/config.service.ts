@@ -30,6 +30,10 @@ export class ConfigService {
           stored.searchPosition === "bottom"
             ? stored.searchPosition
             : DEFAULT_CONFIG.searchPosition,
+        showSearchBar:
+          typeof stored.showSearchBar === "boolean"
+            ? stored.showSearchBar
+            : DEFAULT_CONFIG.showSearchBar,
       };
     } else {
       this.config = { ...DEFAULT_CONFIG };
@@ -89,6 +93,17 @@ export class ConfigService {
     await storage.set(CONFIG_STORAGE_KEY, this.config);
     EventBus.emit("search:position-changed", position);
     EventBus.emit("config:changed", { key: "searchPosition", value: position });
+  }
+
+  getShowSearchBar(): boolean {
+    return this.config.showSearchBar ?? DEFAULT_CONFIG.showSearchBar;
+  }
+
+  async setShowSearchBar(show: boolean): Promise<void> {
+    this.config.showSearchBar = show;
+    await storage.set(CONFIG_STORAGE_KEY, this.config);
+    EventBus.emit("search:visibility-changed", show);
+    EventBus.emit("config:changed", { key: "showSearchBar", value: show });
   }
 
   async updateConfig(partial: Partial<AppConfig>): Promise<void> {

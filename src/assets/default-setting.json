@@ -20,5 +20,6 @@
     "brightness": 1.0
   },
   "elementBlur": 12,
-  "searchPosition": "middle"
+  "searchPosition": "middle",
+  "showSearchBar": true
 }
