@@ -13,6 +13,12 @@ export interface BgCss {
 
 export type SearchPosition = "top" | "middle" | "bottom";
 
+export interface BookmarkItem {
+  id: string;
+  title: string;
+  url: string;
+}
+
 export interface AppConfig {
   defaultSearchEngine: string;
   searchEngines: SearchEngines;
@@ -20,4 +26,7 @@ export interface AppConfig {
   elementBlur: number;
   searchPosition: SearchPosition;
   showSearchBar: boolean;
+  showBookmarks: boolean;
+  bookmarkColumns: number;
+  bookmarks: BookmarkItem[];
 }

@@ -7,9 +7,10 @@ A fast, elegant, and distraction-free New Tab dashboard Chrome extension with cu
 ## Features
 
 - **Spotlight Search**: Multi-engine search with customizable positioning (Top, Middle, Bottom) and toggle visibility.
+- **Bookmarks Grid**: Customizable quick-access links grid with column settings (2 to 6 columns), automatic favicons, and in-settings management (add/remove/toggle).
 - **Custom Wallpaper**: Upload your own photo with live blur, brightness, and scale adjustments (persisted in IndexedDB).
 - **Synchronized Glassmorphism Blur**: A single slider controls the blur across all UI elements (search bar, settings card, and buttons).
-- **Extensible Architecture**: Modular plugin structure making it effortless to add new widgets (Clock, Weather, Bookmarks).
+- **Extensible Architecture**: Modular plugin structure making it effortless to add new widgets (Clock, Weather, etc.).
 
 ---
 

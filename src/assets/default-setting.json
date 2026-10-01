@@ -21,5 +21,13 @@
   },
   "elementBlur": 12,
   "searchPosition": "middle",
-  "showSearchBar": true
+  "showSearchBar": true,
+  "showBookmarks": true,
+  "bookmarkColumns": 4,
+  "bookmarks": [
+    { "id": "1", "title": "GitHub", "url": "https://github.com" },
+    { "id": "2", "title": "YouTube", "url": "https://youtube.com" },
+    { "id": "3", "title": "Reddit", "url": "https://reddit.com" },
+    { "id": "4", "title": "Wikipedia", "url": "https://wikipedia.org" }
+  ]
 }

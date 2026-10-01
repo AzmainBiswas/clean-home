@@ -1,4 +1,4 @@
-import type { BgCss, SearchPosition } from "../config/types";
+import type { BgCss, BookmarkItem, SearchPosition } from "../config/types";
 
 export type EventPayloads = {
   "config:changed": { key: string; value: unknown };
@@ -9,6 +9,9 @@ export type EventPayloads = {
   "search:position-changed": SearchPosition;
   "search:visibility-changed": boolean;
   "element:blur-changed": number;
+  "bookmarks:updated": BookmarkItem[];
+  "bookmarks:visibility-changed": boolean;
+  "bookmarks:columns-changed": number;
 };
 
 type EventHandler<T> = (payload: T) => void;

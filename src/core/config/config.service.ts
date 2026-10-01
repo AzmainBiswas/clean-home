@@ -1,6 +1,6 @@
 import { storage } from "../storage/storage.service";
 import { DEFAULT_CONFIG } from "./default-config";
-import type { AppConfig, BgCss, SearchEngines, SearchPosition } from "./types";
+import type { AppConfig, BgCss, BookmarkItem, SearchEngines, SearchPosition } from "./types";
 import { EventBus } from "../events/event-bus";
 
 const CONFIG_STORAGE_KEY = "config";
@@ -34,6 +34,17 @@ export class ConfigService {
           typeof stored.showSearchBar === "boolean"
             ? stored.showSearchBar
             : DEFAULT_CONFIG.showSearchBar,
+        showBookmarks:
+          typeof stored.showBookmarks === "boolean"
+            ? stored.showBookmarks
+            : DEFAULT_CONFIG.showBookmarks,
+        bookmarkColumns:
+          typeof stored.bookmarkColumns === "number" && stored.bookmarkColumns >= 1
+            ? stored.bookmarkColumns
+            : DEFAULT_CONFIG.bookmarkColumns,
+        bookmarks: Array.isArray(stored.bookmarks)
+          ? stored.bookmarks
+          : [...DEFAULT_CONFIG.bookmarks],
       };
     } else {
       this.config = { ...DEFAULT_CONFIG };
@@ -104,6 +115,59 @@ export class ConfigService {
     await storage.set(CONFIG_STORAGE_KEY, this.config);
     EventBus.emit("search:visibility-changed", show);
     EventBus.emit("config:changed", { key: "showSearchBar", value: show });
+  }
+
+  getShowBookmarks(): boolean {
+    return this.config.showBookmarks ?? DEFAULT_CONFIG.showBookmarks;
+  }
+
+  async setShowBookmarks(show: boolean): Promise<void> {
+    this.config.showBookmarks = show;
+    await storage.set(CONFIG_STORAGE_KEY, this.config);
+    EventBus.emit("bookmarks:visibility-changed", show);
+    EventBus.emit("config:changed", { key: "showBookmarks", value: show });
+  }
+
+  getBookmarkColumns(): number {
+    return this.config.bookmarkColumns ?? DEFAULT_CONFIG.bookmarkColumns;
+  }
+
+  async setBookmarkColumns(columns: number): Promise<void> {
+    this.config.bookmarkColumns = columns;
+    await storage.set(CONFIG_STORAGE_KEY, this.config);
+    EventBus.emit("bookmarks:columns-changed", columns);
+    EventBus.emit("config:changed", { key: "bookmarkColumns", value: columns });
+  }
+
+  getBookmarks(): BookmarkItem[] {
+    return this.config.bookmarks ?? DEFAULT_CONFIG.bookmarks;
+  }
+
+  async setBookmarks(bookmarks: BookmarkItem[]): Promise<void> {
+    this.config.bookmarks = bookmarks;
+    await storage.set(CONFIG_STORAGE_KEY, this.config);
+    EventBus.emit("bookmarks:updated", bookmarks);
+    EventBus.emit("config:changed", { key: "bookmarks", value: bookmarks });
+  }
+
+  async addBookmark(title: string, rawUrl: string): Promise<BookmarkItem> {
+    let url = rawUrl.trim();
+    if (!url.startsWith("http://") && !url.startsWith("https://")) {
+      url = "https://" + url;
+    }
+    const item: BookmarkItem = {
+      id: Date.now().toString(36) + Math.random().toString(36).substring(2, 6),
+      title: title.trim() || url.replace(/^https?:\/\//, "").split("/")[0],
+      url,
+    };
+    const current = this.getBookmarks();
+    await this.setBookmarks([...current, item]);
+    return item;
+  }
+
+  async removeBookmark(id: string): Promise<void> {
+    const current = this.getBookmarks();
+    await this.setBookmarks(current.filter((b) => b.id !== id));
   }
 
   async updateConfig(partial: Partial<AppConfig>): Promise<void> {

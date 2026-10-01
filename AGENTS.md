@@ -87,6 +87,11 @@ clean-home/
 │   │       └── feature.ts        # ExtensionFeature / Widget lifecycle interface
 │   ├── features/                 # Self-contained feature modules
 │   │   ├── index.ts              # Feature Registry (active extensions list)
+│   │   ├── bookmarks/            # Bookmarks & quick links grid
+│   │   │   ├── index.ts          # BookmarksFeature registration
+│   │   │   ├── bookmarks.service.ts  # Favicon resolver & domain helpers
+│   │   │   ├── bookmarks.settings.ts # Settings UI (Add, Remove, Columns, Toggle)
+│   │   │   └── bookmarks.view.ts     # Dashboard bookmarks grid & responsive layout
 │   │   ├── search/               # Search engine switcher & spotlight bar
 │   │   │   ├── index.ts          # SearchFeature registration & shortcuts
 │   │   │   ├── search.service.ts # Engine queries, URL replacement, routing

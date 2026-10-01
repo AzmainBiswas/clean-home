@@ -206,3 +206,101 @@ a[href="./settings.html"]:hover {
   transform: translateY(-2px);
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
 }
+
+/* Bookmarks grid container */
+#bookmarks-container {
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 680px;
+
+  display: grid;
+  grid-template-columns: repeat(var(--bookmark-columns, 4), minmax(0, 1fr));
+  gap: 12px;
+  z-index: 10;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Dynamic vertical positioning based on search bar placement */
+#bookmarks-container.search-top {
+  top: 24%;
+}
+
+#bookmarks-container.search-middle {
+  top: 53%;
+}
+
+#bookmarks-container.search-bottom {
+  top: 36%;
+}
+
+#bookmarks-container.search-hidden {
+  top: 40%;
+}
+
+/* Individual bookmark tile */
+.bookmark-tile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 10px;
+
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--element-blur)) saturate(140%);
+  -webkit-backdrop-filter: blur(var(--element-blur)) saturate(140%);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+}
+
+.bookmark-tile:hover {
+  background: rgba(30, 30, 42, 0.65);
+  border-color: rgba(255, 255, 255, 0.28);
+  transform: translateY(-3px);
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.38);
+}
+
+.bookmark-icon-wrapper {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.bookmark-icon {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+  border-radius: 4px;
+}
+
+.bookmark-fallback-icon {
+  font-size: 15px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.bookmark-title {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-primary);
+  text-align: center;
+  max-width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  letter-spacing: 0.2px;
+}

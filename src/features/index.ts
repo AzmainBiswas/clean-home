@@ -1,6 +1,7 @@
 import type { ExtensionFeature } from "../core/types/feature";
 import { WallpaperFeature } from "./wallpaper";
 import { SearchFeature } from "./search";
+import { BookmarksFeature } from "./bookmarks";
 
 /**
  * Registry of all available features in Clean Home.
@@ -10,5 +11,7 @@ import { SearchFeature } from "./search";
 export const features: ExtensionFeature[] = [
   WallpaperFeature,
   SearchFeature,
+  BookmarksFeature,
 ];
+
 
