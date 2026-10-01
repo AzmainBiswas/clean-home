@@ -1,4 +1,5 @@
 import { configService } from "../../core/config/config.service";
+import type { SearchPosition } from "../../core/config/types";
 import { attachScrollToRange, createElement } from "../../shared/dom/dom";
 import { searchService } from "./search.service";
 
@@ -13,6 +14,7 @@ export function createSearchSettings(): HTMLElement {
   });
   const select = createElement("select", {
     id: "default-search-selector",
+    className: "settings-select",
   });
 
   const sorted = searchService.getSortedEngines();
@@ -60,6 +62,40 @@ export function createSearchSettings(): HTMLElement {
   attachScrollToRange(blurInput);
   blurContainer.append(blurLabel, blurInput);
 
-  wrapper.append(engineContainer, blurContainer);
+  // 3. Search Bar Position Selector
+  const positionContainer = createElement("div", { className: "container" });
+  const positionLabel = createElement("label", {
+    htmlFor: "search-position-selector",
+    textContent: "Search Bar Position",
+  });
+  const positionSelect = createElement("select", {
+    id: "search-position-selector",
+    className: "settings-select",
+  });
+
+  const positions: { key: SearchPosition; label: string }[] = [
+    { key: "top", label: "Top" },
+    { key: "middle", label: "Middle" },
+    { key: "bottom", label: "Bottom" },
+  ];
+  const currentPos = configService.getSearchPosition();
+
+  positions.forEach((pos) => {
+    const opt = createElement("option", {
+      value: pos.key,
+      textContent: pos.label,
+    });
+    if (pos.key === currentPos) {
+      opt.selected = true;
+    }
+    positionSelect.appendChild(opt);
+  });
+
+  positionSelect.addEventListener("change", () => {
+    configService.setSearchPosition(positionSelect.value as SearchPosition);
+  });
+  positionContainer.append(positionLabel, positionSelect);
+
+  wrapper.append(engineContainer, blurContainer, positionContainer);
   return wrapper;
 }

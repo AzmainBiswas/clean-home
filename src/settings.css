@@ -204,8 +204,10 @@ input[type="range"]::-moz-range-thumb {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.45);
 }
 
-/* Search Engine selector dropdown in settings */
-#default-search-selector {
+/* Select dropdowns in settings */
+#default-search-selector,
+#search-position-selector,
+.settings-select {
   height: 38px;
   width: 180px;
   padding: 0 28px 0 12px;
@@ -224,17 +226,23 @@ input[type="range"]::-moz-range-thumb {
   transition: all 0.2s ease;
 }
 
-#default-search-selector:hover {
+#default-search-selector:hover,
+#search-position-selector:hover,
+.settings-select:hover {
   background-color: rgba(255, 255, 255, 0.14);
   border-color: rgba(255, 255, 255, 0.25);
 }
 
-#default-search-selector:focus {
+#default-search-selector:focus,
+#search-position-selector:focus,
+.settings-select:focus {
   outline: none;
   border-color: var(--glass-border-focus);
 }
 
-#default-search-selector option {
+#default-search-selector option,
+#search-position-selector option,
+.settings-select option {
   background-color: #181820;
   color: #ffffff;
 }

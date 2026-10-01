@@ -19,5 +19,6 @@
     "scale": 1.1,
     "brightness": 1.0
   },
-  "elementBlur": 12
+  "elementBlur": 12,
+  "searchPosition": "middle"
 }

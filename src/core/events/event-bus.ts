@@ -1,4 +1,4 @@
-import type { BgCss } from "../config/types";
+import type { BgCss, SearchPosition } from "../config/types";
 
 export type EventPayloads = {
   "config:changed": { key: string; value: unknown };
@@ -6,6 +6,7 @@ export type EventPayloads = {
   "wallpaper:filters-changed": BgCss;
   "search:focus": void;
   "search:select-engine": string;
+  "search:position-changed": SearchPosition;
   "element:blur-changed": number;
 };
 

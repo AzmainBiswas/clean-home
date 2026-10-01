@@ -1,6 +1,6 @@
 import { storage } from "../storage/storage.service";
 import { DEFAULT_CONFIG } from "./default-config";
-import type { AppConfig, BgCss, SearchEngines } from "./types";
+import type { AppConfig, BgCss, SearchEngines, SearchPosition } from "./types";
 import { EventBus } from "../events/event-bus";
 
 const CONFIG_STORAGE_KEY = "config";
@@ -24,6 +24,12 @@ export class ConfigService {
           typeof stored.elementBlur === "number"
             ? stored.elementBlur
             : DEFAULT_CONFIG.elementBlur,
+        searchPosition:
+          stored.searchPosition === "top" ||
+          stored.searchPosition === "middle" ||
+          stored.searchPosition === "bottom"
+            ? stored.searchPosition
+            : DEFAULT_CONFIG.searchPosition,
       };
     } else {
       this.config = { ...DEFAULT_CONFIG };
@@ -72,6 +78,17 @@ export class ConfigService {
     await storage.set(CONFIG_STORAGE_KEY, this.config);
     EventBus.emit("element:blur-changed", blur);
     EventBus.emit("config:changed", { key: "elementBlur", value: blur });
+  }
+
+  getSearchPosition(): SearchPosition {
+    return this.config.searchPosition ?? DEFAULT_CONFIG.searchPosition;
+  }
+
+  async setSearchPosition(position: SearchPosition): Promise<void> {
+    this.config.searchPosition = position;
+    await storage.set(CONFIG_STORAGE_KEY, this.config);
+    EventBus.emit("search:position-changed", position);
+    EventBus.emit("config:changed", { key: "searchPosition", value: position });
   }
 
   async updateConfig(partial: Partial<AppConfig>): Promise<void> {

@@ -52,9 +52,7 @@ body {
 /* Centered elegant spotlight search form */
 #search-form {
   position: fixed;
-  top: 42%;
   left: 50%;
-  transform: translate(-50%, -50%);
 
   display: flex;
   align-items: center;
@@ -71,7 +69,38 @@ body {
   border-radius: 18px;
   box-shadow: var(--glass-shadow);
 
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Position variants */
+#search-form.pos-top {
+  top: 12%;
+  bottom: auto;
+  transform: translateX(-50%);
+}
+
+#search-form.pos-top:focus-within {
+  transform: translate(-50%, -3px);
+}
+
+#search-form.pos-middle {
+  top: 42%;
+  bottom: auto;
+  transform: translate(-50%, -50%);
+}
+
+#search-form.pos-middle:focus-within {
+  transform: translate(-50%, -52%);
+}
+
+#search-form.pos-bottom {
+  top: auto;
+  bottom: 12%;
+  transform: translateX(-50%);
+}
+
+#search-form.pos-bottom:focus-within {
+  transform: translate(-50%, -3px);
 }
 
 #search-form:hover {
@@ -83,7 +112,6 @@ body {
   background: rgba(25, 25, 34, 0.62);
   border-color: var(--glass-border-focus);
   box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45), 0 0 0 1px var(--glass-border-focus);
-  transform: translate(-50%, -52%);
 }
 
 #search-form input[type="submit"] {

@@ -1,3 +1,5 @@
+import { configService } from "../../core/config/config.service";
+import type { SearchPosition } from "../../core/config/types";
 import { EventBus } from "../../core/events/event-bus";
 import { createElement } from "../../shared/dom/dom";
 import { searchService } from "./search.service";
@@ -9,6 +11,7 @@ export class SearchView {
 
   render(): HTMLElement {
     this.form = createElement("form", { id: "search-form" });
+    this.applyPosition(configService.getSearchPosition());
 
     this.select = createElement("select", {
       name: "search-engines",
@@ -53,7 +56,17 @@ export class SearchView {
       this.input?.focus();
     });
 
+    EventBus.on("search:position-changed", (newPos) => {
+      this.applyPosition(newPos);
+    });
+
     return this.form;
+  }
+
+  private applyPosition(pos: SearchPosition): void {
+    if (!this.form) return;
+    this.form.classList.remove("pos-top", "pos-middle", "pos-bottom");
+    this.form.classList.add(`pos-${pos}`);
   }
 
   private populateEngines(): void {

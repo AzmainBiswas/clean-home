@@ -11,9 +11,12 @@ export interface BgCss {
   brightness: number;
 }
 
+export type SearchPosition = "top" | "middle" | "bottom";
+
 export interface AppConfig {
   defaultSearchEngine: string;
   searchEngines: SearchEngines;
   bgCss: BgCss;
   elementBlur: number;
+  searchPosition: SearchPosition;
 }
