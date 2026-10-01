@@ -16,16 +16,25 @@ Welcome to the **Clean Home** codebase. This document serves as the authoritativ
 
 ## 2. How to Load and Install in Your Browser
 
-To run or test this extension in Google Chrome, Brave, Microsoft Edge, or any Chromium-based browser:
+### Option A: Install Pre-Built Release (No Node.js or Build Required)
+1. Download **`clean-home.zip`** from the repository's **Releases** page on GitHub.
+2. Unzip / extract `clean-home.zip` anywhere on your machine.
+3. Open `chrome://extensions/` in Chrome, Brave, or Edge.
+4. Turn on the **Developer mode** toggle (top-right).
+5. Click **Load unpacked** (top-left) and select the unzipped directory containing `manifest.json`.
 
-### Step 1: Build the Project
+---
+
+### Option B: Build from Source (For Developers)
+
+#### Step 1: Build the Project
 Open a terminal in the project directory and build the production bundle:
 ```bash
 npm run build
 ```
 This runs `tsc` for type-checking and `vite build` to generate the compiled static extension files inside the `dist/` folder.
 
-### Step 2: Open Extensions Settings in Chrome
+#### Step 2: Open Extensions Settings in Chrome
 1. In your Chromium browser, navigate to:
    ```text
    chrome://extensions/
@@ -33,18 +42,46 @@ This runs `tsc` for type-checking and `vite build` to generate the compiled stat
    *(For Brave: `brave://extensions/`, For Edge: `edge://extensions/`)*
 2. In the top-right corner of the page, toggle **Developer mode** to **ON**.
 
-### Step 3: Load Unpacked Extension
+#### Step 3: Load Unpacked Extension
 1. Click the **Load unpacked** button in the top-left toolbar.
 2. In the file picker, select the **`dist`** folder inside this project directory (`/path/to/clean-home/dist`).
 3. Click **Select Folder** (or **Open**).
 
-### Step 4: Verify
+#### Step 4: Verify
 1. Open a new tab in your browser (`Ctrl+T` or `Cmd+T`).
 2. You will see the **Clean Home** new tab dashboard!
 3. Click the **Settings** button in the bottom-right corner to customize wallpaper, search engine, blur, or bar position.
 
 > [!TIP]
 > While developing, run `npm run build` after making code changes, then click the **Reload icon (↻)** on the Clean Home card in `chrome://extensions`.
+
+---
+
+### 2.5 Creating GitHub Releases with Pre-Built Assets
+
+To provide users with ready-to-load ZIP files so they do not have to run `npm run build`:
+
+#### Method 1: Automated Release via GitHub Actions (Recommended)
+This repository includes `.github/workflows/release.yml`. When you publish a release or push a git tag:
+```bash
+git tag v1.0.0
+git push origin v1.0.0
+```
+GitHub Actions will automatically:
+1. Check out the repository and install dependencies with `npm ci`.
+2. Build and package the extension bundle using `npm run package`.
+3. Upload `clean-home.zip` directly to the GitHub Release.
+
+#### Method 2: Manual Local Packaging & Upload
+1. Run the package script:
+   ```bash
+   npm run package
+   ```
+   This compiles the project and generates `clean-home.zip` in your root folder.
+2. Go to your GitHub repository -> **Releases** -> **Draft a new release**.
+3. Choose or create a tag (e.g. `v1.0.0`).
+4. Drag and drop `clean-home.zip` into the **Attach binaries** box.
+5. Click **Publish release**.
 
 ---
 

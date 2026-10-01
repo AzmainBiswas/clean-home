@@ -16,20 +16,25 @@ A fast, elegant, and distraction-free New Tab dashboard Chrome extension with cu
 
 ## How to Add to Your Browser
 
-Follow these steps to load Clean Home into **Chrome**, **Brave**, **Edge**, or any Chromium browser:
+### Option 1: Quick Install (No Build or Node.js Required)
+1. Go to the **[Releases](../../releases)** tab on GitHub and download **`clean-home.zip`** from the latest release.
+2. Extract / unzip `clean-home.zip` anywhere on your computer.
+3. In Chrome, Brave, or Edge, navigate to `chrome://extensions/`.
+4. Turn on the **Developer mode** toggle in the top-right corner.
+5. Click **Load unpacked** (top-left) and select the unzipped folder.
+6. Open a New Tab (`Ctrl+T` / `Cmd+T`)!
 
-1. **Build the extension**:
+### Option 2: Build from Source
+1. Clone the repository and install dependencies:
    ```bash
    npm install
+   ```
+2. Build the extension bundle:
+   ```bash
    npm run build
    ```
-2. **Open Extensions in your browser**:
-   Navigate to `chrome://extensions/` *(or `brave://extensions/` / `edge://extensions/`)*.
-3. **Turn on Developer Mode**:
-   Toggle the **Developer mode** switch in the top-right corner to **ON**.
-4. **Load the extension**:
-   Click **Load unpacked** (top-left) and select the **`dist`** folder inside this repository.
-5. **Open a New Tab** (`Ctrl+T` / `Cmd+T`) to start using Clean Home!
+3. In your browser, open `chrome://extensions/` and enable **Developer mode**.
+4. Click **Load unpacked** and select the **`dist`** folder inside the project.
 
 ---
 
@@ -37,7 +42,8 @@ Follow these steps to load Clean Home into **Chrome**, **Brave**, **Edge**, or a
 
 - **Run Dev Server**: `npm run dev`
 - **Type Check & Build**: `npm run build`
-- **Architecture & AI Guidelines**: See [**`AGENTS.md`**](./AGENTS.md) for detailed developer documentation and feature blueprints.
+- **Package Release ZIP**: `npm run package` (builds and produces `clean-home.zip`)
+- **Architecture & AI Guidelines**: See [**`AGENTS.md`**](./AGENTS.md) for detailed developer documentation, release workflows, and feature blueprints.
 
 ---
 
