@@ -47,6 +47,26 @@ A fast, elegant, and distraction-free New Tab dashboard Chrome extension with cu
 
 ---
 
+## Contributors
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<table>
+  <tbody>
+    <tr>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/AzmainBiswas"><img src="https://github.com/AzmainBiswas.png?size=100" width="100px;" alt="Azmain Biswas"/><br /><sub><b>Azmain Biswas</b></sub></a><br /><a href="#creator" title="Creator">👑</a> <a href="#code" title="Code">💻</a> <a href="#design" title="Design">🎨</a> <a href="#maintenance" title="Maintenance">🚧</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://antigravity.google"><img src="https://antigravity.google/favicon.ico" width="100px;" alt="Google Antigravity"/><br /><sub><b>Google Antigravity</b></sub></a><br /><a href="#pair-programming" title="Pair Programming">🤖</a> <a href="#code" title="Code">💻</a> <a href="#doc" title="Documentation">📖</a> <a href="#infra" title="Infrastructure / CI">🚇</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- markdownlint-restore -->
+<!-- prettier-ignore-end -->
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
+---
+
 ## License
 
 MIT

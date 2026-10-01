@@ -1,0 +1,37 @@
+{
+  "projectName": "clean-home",
+  "projectOwner": "AzmainBiswas",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "AzmainBiswas",
+      "name": "Azmain Biswas",
+      "avatar_url": "https://github.com/AzmainBiswas.png",
+      "profile": "https://github.com/AzmainBiswas",
+      "contributions": [
+        "creator",
+        "code",
+        "design",
+        "maintenance"
+      ]
+    },
+    {
+      "login": "google-antigravity",
+      "name": "Google Antigravity",
+      "avatar_url": "https://antigravity.google/favicon.ico",
+      "profile": "https://antigravity.google",
+      "contributions": [
+        "code",
+        "doc",
+        "infra"
+      ]
+    }
+  ],
+  "contributorsPerList": 7
+}
